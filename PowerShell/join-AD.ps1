@@ -2,6 +2,9 @@
 
 # Purpose: Provisioning brand new Windows devices to AD
 
+# On new devices - Unblock-File -Path "<path>"
+# & "<path>"
+
 $DomainName = ""
 $OUPath = "OU=,OU=,DC=,DC="
 
