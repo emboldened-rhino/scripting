@@ -14,7 +14,7 @@ enablecredsspsupport:i:1
 screen mode id:i:2
 use multimon:i:0
 redirectclipboard:i:1
-redirectprinters:i:0
+redirectprinters:i:1
 redirectdrives:i:0
 "@
 
