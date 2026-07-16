@@ -1,11 +1,11 @@
-# Purpose: Provisioning brand new Windows devices to AD Rename device 
-
 #Requires -RunAsAdministrator
 
-$DomainName = ""
-$OUPath = "OU=Workstations,OU=Computers,DC=nicholsequipment,DC=local"
+# Purpose: Provisioning brand new Windows devices to AD
 
-$ComputerName = Read-Host ""
+$DomainName = ""
+$OUPath = "OU=,OU=,DC=,DC="
+
+$ComputerName = (Read-Host "Enter asset tag").Trim()
 
 # Verify computer name isn't blank 
 if ([string]::IsNullOrWhiteSpace($ComputerName)) {
@@ -15,7 +15,7 @@ if ([string]::IsNullOrWhiteSpace($ComputerName)) {
 
 $Credential = Get-Credential -Message "Enter an account authorized to join computers to the domain" 
 
-# Rename and join AD try/catch 
+# Join AD and rename
 try {
   Add-Computer `
     -DomainName $DomainName `
@@ -24,7 +24,8 @@ try {
     -NewName $ComputerName `
     -Restart `
     -Force `
-    -ErrorAction Stop # Treats any failures as a terminating error so that the catch block runs
+    # Treats any failures as a terminating error so that the catch block runs
+    -ErrorAction Stop 
   }
   catch {
     Write-Host "Failed to join the domain." -ForegroundColor Red
